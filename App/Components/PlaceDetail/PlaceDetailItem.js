@@ -1,16 +1,16 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
 import { AntDesign } from "@expo/vector-icons";
-import Colors from '../../Shared/Colors';
-import { Image } from 'react-native';
+import Colors from "../../Shared/Colors";
+import { Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import GoogleMapView from '../Home/GoogleMapView';
-import { TouchableOpacity } from 'react-native';
-import Share from '../../Services/Share';
-export default function PlaceDetailItem({place,onDirectionClick}) {  
+import GoogleMapView from "../Home/GoogleMapView";
+import { TouchableOpacity } from "react-native";
+import Share from "../../Services/Share";
+export default function PlaceDetailItem({ place, onDirectionClick }) {
   return (
     <View>
-       <Text style={{ fontSize: 26, fontFamily: "raleway-bold" }}>
+      <Text style={{ fontSize: 26, fontFamily: "raleway-bold" }}>
         {place.name}
       </Text>
       <View
@@ -44,58 +44,61 @@ export default function PlaceDetailItem({place,onDirectionClick}) {
         />
       ) : null}
 
-      
-        <Text
+      <Text
         style={{ fontSize: 16, marginTop: 10, color: Colors.DARK_GRAY }}
         numberOfLines={2}
-        >
-        {place.vicinity?place.vicinity:place.formatted_address}
+      >
+        {place.vicinity ? place.vicinity : place.formatted_address}
       </Text>
       {place?.opening_hours ? (
         <Text style={{ fontFamily: "raleway" }}>
-          {place?.opening_hours?.open_now == true ? 
-          "(Open)" : 
-          "(Closed)"}
+          {place?.opening_hours?.open_now == true ? "(Open)" : "(Closed)"}
         </Text>
       ) : null}
 
-        <View style={{marginTop:10,flexDirection:'row',
-    display:'flex', gap:10}}>
-        <TouchableOpacity onPress={()=>onDirectionClick()}
+      <View
+        style={{
+          marginTop: 10,
+          flexDirection: "row",
+          display: "flex",
+          gap: 10,
+        }}
+      >
+        <TouchableOpacity
+          onPress={() => onDirectionClick()}
           style={{
             direction: "flex",
             flexDirection: "row",
             alignItems: "center",
             gap: 5,
-            backgroundColor:Colors.GRAY,
-            width:110,
-            padding:3,
-            borderRadius:40,
-            justifyContent:'center'
+            backgroundColor: Colors.GRAY,
+            width: 110,
+            padding: 3,
+            borderRadius: 40,
+            justifyContent: "center",
           }}
         >
           <Ionicons name="navigate-circle-outline" size={24} color="black" />
           <Text style={{ fontFamily: "raleway", fontSize: 16 }}>Direction</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>Share.SharePlace(place)}
+        <TouchableOpacity
+          onPress={() => Share.SharePlace(place)}
           style={{
             direction: "flex",
             flexDirection: "row",
             alignItems: "center",
             gap: 5,
-            backgroundColor:Colors.GRAY,
-            width:90,
-            padding:3,
-            borderRadius:40,
-            justifyContent:'center'
+            backgroundColor: Colors.GRAY,
+            width: 90,
+            padding: 3,
+            borderRadius: 40,
+            justifyContent: "center",
           }}
         >
-         <Ionicons name="md-share-outline" size={24} color="black" />
+          <Ionicons name="md-share-outline" size={24} color="black" />
           <Text style={{ fontFamily: "raleway", fontSize: 16 }}>Share</Text>
         </TouchableOpacity>
-        </View>
-
-     
+      </View>
     </View>
-  )
-}  
+  );
+}

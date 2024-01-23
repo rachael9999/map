@@ -5,6 +5,7 @@ import { UserLocationContext } from "../../Context/UserLocationContext";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Entypo } from "@expo/vector-icons";
+import PlaceMarker from "./PlaceMarker";
 
 export default function GoogleMapView({ placeList }) {
   const [mapRegion, setmapRegion] = useState(null);
@@ -70,7 +71,12 @@ export default function GoogleMapView({ placeList }) {
         showsUserLocation={true}
         region={mapRegion}
         onRegionChangeComplete={(region) => setmapRegion(region)}
-      />
+      >
+        <Marker title="You" coordinate={mapRegion} />
+        {placeList.map(
+          (item, index) => index <= 5 && <PlaceMarker item={item} key={index} />
+        )}
+      </MapView>
 
       {/*need to put buttons outside mapview components so that it can get the
       touch events*/}
